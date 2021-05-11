@@ -1,9 +1,9 @@
-package org.kcm.sample;
+package org.conan.sample;
 
+import org.conan.domain.BoardVO;
+import org.conan.mapper.BoardMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kcm.domain.BoardVO;
-import org.kcm.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,42 +14,40 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class BoardMapperTest { //ì „ì²´ ë‚´ìš© ë‚˜ì˜´
+public class BoardMapperTest {
 	@Setter(onMethod = @__({@Autowired}))
 	private BoardMapper mapper;
-	
-	@Test //ì „ì²´ ë‚´ìš© ë‚˜ì˜´
-	public void testGetList() {
-			mapper.getList().forEach(board->log.info(board)); //ëŒë‹¤ì‹ í‘œí˜„
-		}
-	
 	@Test
-	public void testInsert() { //ìƒˆë¡œìš´ ë‚´ìš© ì¶”ê°€
+	public void testGetList() {
+		//¶÷´Ù½Ä Ç¥Çö
+		mapper.getList().forEach(board->log.info(board));
+	}
+	@Test
+	public void testInsert(){
 		BoardVO board = new BoardVO();
-		board.setTitle("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ê¸€");
-		board.setContent("ìƒˆë¡œ ì‘ì„±í•˜ëŠ” ë‚´ìš©");
+		board.setTitle("»õ·Î ÀÛ¼ºÇÏ´Â ±Û");
+		board.setContent("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë");
 		board.setWriter("newbie");
 		mapper.insert(board);
 		log.info(board);
 	}
-	@Test 
-	public void testRead() { //ê²Œì‹œë¬¼ ì¡°íšŒ(ë²ˆí˜¸ì— ë”°ë¼ ì¡°íšŒí•˜ëŠ” ë‚´ìš©ì´ ë‹¬ë¼ì§)
-		BoardVO board = mapper.read(6L);
+	@Test
+	public void testRead() {
+		BoardVO board = mapper.read(5L);
 		log.info(board);
 	}
+
 	@Test
-	public void testDelete() {//ê²Œì‹œê¸€ ì‚­ì œ
-		log.info("DELETE COUNT: " + mapper.delete(5L));
+	public void testDelete() {
+		log.info("DELETE COUNT: "+mapper.delete(5L));
 	}
 	@Test
-	public void testUpdate() {//ê²Œì‹œê¸€ ìˆ˜ì •í•˜ê¸°
+	public void testUpdate(){
 		BoardVO board = new BoardVO();
 		board.setBno(2L);
-		board.setTitle("ìˆ˜ì •í•œ ì œëª©");
-		board.setContent("ìˆ˜ì •í•œ ë‚´ìš©");
-		board.setWriter("rose");
+		board.setTitle("¼öÁ¤ÇÏ´Â ±Û");
+		board.setContent("¼öÁ¤ÇÏ´Â ³»¿ë");
 		int count = mapper.update(board);
 		log.info("UPDATE COUNT : " + count);
 	}
-	
 }

@@ -1,4 +1,4 @@
-package org.kcm.domain;
+package org.conan.domain;
 
 import java.util.Date;
 
@@ -12,4 +12,5 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	private Date updateDate;
+
 }

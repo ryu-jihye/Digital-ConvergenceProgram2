@@ -1,23 +1,22 @@
-package org.kcm.mapper;
+package org.conan.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-import org.kcm.domain.BoardVO;
+/*import org.apache.ibatis.annotations.Select;*/
+import org.conan.domain.BoardVO;
 
 public interface BoardMapper {
-
-	/* @Select("select * from tbl_board where bno > 0") */
-	public List<BoardVO> getList();
-	
-	//BoardMapperTest ì‚¬ìš© ì‹œ ë°˜ë“œì‹œ í•„ìš”
-	public void insert(BoardVO board); 
-	
-	public void insertSelectKey(BoardVO board);
-	
-	public BoardVO read(Long bno);
-	
-	public int delete (Long bno);
-	public int update(BoardVO board);
+   /* @Select("select * from tbl_board where bno>0") */
+   //¸ñ·ÏÀ¸·Î °¡Á®¿È
+   public List<BoardVO> getList();
+   //»ý¼±µÈ PK°ªÀ» ¾Ë ÇÊ¿ä°¡ ¾ø´Â °æ¿ì
+   public void insert(BoardVO board);
+   //»ý¼ºµÈ PK°ªÀ» ¾Ë¾Æ¾ßÇÏ´Â °æ¿ì
+   public void insertSelectKey(BoardVO board);
+   //ÀÐ¾î¿È
+   public BoardVO read(Long bno);
+   //no¸¦ ÂüÁ¶ÇØ¼­ »èÁ¦ÇÏ´Âµ¥ bno¸¦ ¾²´Ï±î longÅ¸ÀÔÀ¸·Î
+   public int delete(Long bno);
+   public int update(BoardVO board);
+   
 }
-
