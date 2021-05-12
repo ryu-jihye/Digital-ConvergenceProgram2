@@ -24,9 +24,10 @@ import lombok.extern.log4j.Log4j;
 public class BoardControllerTest {
 	@Setter(onMethod_= {@Autowired})
 	private WebApplicationContext ctx;
-	private MockMvc mockMvc; //MockMvc : 가짜 mvc
-	@Before //모든 테스트 전에 매번 실행
-	public void setup() { this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build(); }
+	private MockMvc mockMvc;
+	@Before
+	public void setup() {this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();}
+	
 	@Test
 	public void testList() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
@@ -34,36 +35,36 @@ public class BoardControllerTest {
 	}
 	
 	@Test
-	public void testResister() throws Exception {
+	public void testRegister() throws Exception {
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-				.param("title", "test from controller")
-				.param("content", "test from controller")
-				.param("writer", "user0000"))
-				.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
+		.param("title", "test from controller")
+		.param("content", "test from controller")
+		.param("writer", "user0000"))
+		.andReturn().getModelAndView().getViewName();
+	log.info(resultPage);
 	}
 	
 	@Test
 	public void testGet() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/get")
-				.param("bno", "2")).andReturn().getModelAndView().getModelMap());
+		.param("bno", "2")).andReturn().getModelAndView().getModelMap());
 	}
 	
-	
 	@Test public void testModify() throws Exception {
-		String resultPage = 
-				mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
-				.param("bno", "1")
-				.param("title", "일번일번")
-				.param("content",  "일번 일번")
-				.param("writer", "일번 유저"))
+		String resultPage =
+			mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+			.param("bno", "4")
+			.param("title", "사번사번")
+			.param("content", "사번사번")
+			.param("writer", "사번 유저"))
 			.andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
 	}
 	@Test public void testRemove() throws Exception {
 		String resultPage = 
 			mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
-			.param("bno", "3")).andReturn().getModelAndView().getViewName();
+			.param("bno", "5")).andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
 	}
+	
 }
