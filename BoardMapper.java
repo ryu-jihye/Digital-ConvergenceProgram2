@@ -2,21 +2,20 @@ package org.conan.mapper;
 
 import java.util.List;
 
-/*import org.apache.ibatis.annotations.Select;*/
+import org.apache.ibatis.annotations.Select;
 import org.conan.domain.BoardVO;
 
-public interface BoardMapper {
-   /* @Select("select * from tbl_board where bno>0") */
-   //¸ñ·ÏÀ¸·Î °¡Á®¿È
-   public List<BoardVO> getList();
-   //»ı¼±µÈ PK°ªÀ» ¾Ë ÇÊ¿ä°¡ ¾ø´Â °æ¿ì
-   public void insert(BoardVO board);
-   //»ı¼ºµÈ PK°ªÀ» ¾Ë¾Æ¾ßÇÏ´Â °æ¿ì
-   public void insertSelectKey(BoardVO board);
-   //ÀĞ¾î¿È
-   public BoardVO read(Long bno);
-   //no¸¦ ÂüÁ¶ÇØ¼­ »èÁ¦ÇÏ´Âµ¥ bno¸¦ ¾²´Ï±î longÅ¸ÀÔÀ¸·Î
-   public int delete(Long bno);
-   public int update(BoardVO board);
-   
+public interface BoardMapper { //tbl_bbs ì‚¬ìš©(ê¸°ì¡´ tbl_board)
+	/* @Select("select * from tbl_bbs where bno>0") */
+	public List<BoardVO> getList();
+	
+	public void insert(BoardVO board);
+	
+	public void insertSelectKey(BoardVO board);
+	
+	public BoardVO read(Long bno);
+	//bnoë¥¼ ì°¸ì¡°í•´ì„œ ì‚­ì œí•˜ëŠ”ë° bnoë¥¼ ì“°ë‹ˆê¹Œ longíƒ€ì…ìœ¼ë¡œ
+	public int delete(Long bno);
+	
+	public int update(BoardVO board);
 }

@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <jsp:include page="../includes/header.jsp" />
-
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function() {
 	var result = '<c:out value="${result}"/>';
 	checkModal(result);
+	history.replaceState({}, null, null);
 	
 	function checkModal(result) {
-		if(result === '' || history.state) {
+		if(result === '' ||history.state) {
 			return;
 		}
 		if (parseInt(result) > 0) {
@@ -20,16 +19,15 @@ $(document).ready(function(){
 		}
 		$("#myModal").modal("show");
 	}
-	
-	$("#regBtn").on("click", function(){
-	self.location = "/board/register";
-	}); //버튼 클릭 시 등록창 이동
-});	
+	$("#regBtn").on("click", function() {
+		self.location = "/board/register";
+	});
+});
 </script>
 <!--header ------------------------------------------ -->
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Board List Page</h1>
+		<h1 class="page-header">Tables</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -38,8 +36,8 @@ $(document).ready(function(){
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">게시글 목록
-			<button id='regBtn' type="button" class="btn btn-xs pull-right">새로운 글 작성</button>
-         	</div>
+			<button id='regBtn' type="button" class="btn btn-xs pull-right">글쓰기</button>
+			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<table width="100%"
@@ -87,6 +85,7 @@ $(document).ready(function(){
 					</div> <!-- modal-content -->
 				</div> <!-- modal-dialog -->
 			</div> <!-- modal fade -->
+				
 				<!-- /.table-responsive -->
 			</div>
 			<!-- /.panel-body -->
