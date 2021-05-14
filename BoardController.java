@@ -1,10 +1,13 @@
 package org.conan.controller;
 
 import org.conan.domain.BoardVO;
+import org.conan.domain.Criteria;
+import org.conan.domain.PageDTO;
 import org.conan.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,9 +24,17 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getList());
+	public void list(Criteria cri, Model model) {
+		log.info("list: " + cri);
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+	
+		int total = service.getTotal(cri);
+		
+		log.info("total:" + total);
+		
+		model.addAttribute("pageMakger", new PageDTO(cri, total));
+	
 	}
 	
 	@GetMapping("/register")
@@ -39,30 +50,32 @@ public class BoardController {
 		return "redirect:/board/list"; //redirect 하지 않을 경우 새로 고침 시 도배
 	}
 	
-	@GetMapping("/get")
-	public void get(@RequestParam("bno")Long bno, Model model) {
-		log.info("/get");
-		model.addAttribute("board", service.get(bno));
-	}
-	@GetMapping("/modify")
-	public String modify(@RequestParam("bno")Long bno, Model model) {
-		log.info("/modify");
-		model.addAttribute("board", service.get(bno));
-		return "/board/modify"; //여기를 설정하지 않아서 board/modify로 넘어가지 않음
-	}
-	
-//	@GetMapping({"/get", "/modify"})
+//	@GetMapping("/get")
 //	public void get(@RequestParam("bno")Long bno, Model model) {
-//		log.info("/get or modify");
+//		log.info("/get");
 //		model.addAttribute("board", service.get(bno));
 //	}
-//	
+//	@GetMapping("/modify")
+//	public String modify(@RequestParam("bno")Long bno, Model model) {
+//		log.info("/modify");
+//		model.addAttribute("board", service.get(bno));
+//		return "/board/modify"; //여기를 설정하지 않아서 board/modify로 넘어가지 않음
+//	}
+	
+	@GetMapping({"/get", "/modify"})
+	public void get(@RequestParam("bno")Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("/get or modify");
+		model.addAttribute("board", service.get(bno));
+	}
+	
 	@PostMapping("/modify")
-	public String get(BoardVO board, RedirectAttributes rttr) {
+	public String get(BoardVO board, @ModelAttribute("cri")Criteria cri, RedirectAttributes rttr) {
 		log.info("modify :" + board);
 		if(service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 		return "redirect:/board/list";
 	}
 	
@@ -75,5 +88,6 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
+	
 	
 }

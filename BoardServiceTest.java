@@ -1,4 +1,4 @@
-package org.conan.service;
+package org.conan.sample;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -17,7 +17,7 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class BoardServiceTest {
-	@Setter(onMethod_= {@Autowired})
+	@Setter(onMethod_ = {@Autowired})
 	private BoardService service;
 	
 	@Test
@@ -33,23 +33,26 @@ public class BoardServiceTest {
 		BoardVO board = new BoardVO();
 		board.setTitle("새글 새글 새글 from Service");
 		board.setContent("새 내용 새 내용 from Service");
-		board.setWriter("newvie");
+		board.setWriter("newbie");
 		service.register(board);
-		log.info("생성된 게시물의 번호:" + board.getBno());
+		log.info("생성된 게시물이 번호 : " + board.getBno());
 	}
+		
 	@Test
 	public void testGet() {
 		log.info(service.get(6L).getTitle());
 	}
 	@Test
 	public void testDelete() {
-		log.info("REMOVE RESULT : " + service.remove(18L));
+		log.info("REMOVE RESULT : " + service.remove(6L));
 	}
 	@Test
 	public void testUpdate() {
-		BoardVO board = service.get(6L);
+		BoardVO board = service.get(4L);
 		if(board==null) {return;}
 		board.setTitle("제목 수정 from Service");
-		log.info("MODIFY RESULT : "+service.modify(board));
+		log.info("MODIFY RESULT " + service.modify(board));
 	}
+		
+
 }
