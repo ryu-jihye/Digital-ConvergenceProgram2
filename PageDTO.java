@@ -1,4 +1,4 @@
-package org.conan.domain;
+package org.jihyeong.domain;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -6,30 +6,21 @@ import lombok.ToString;
 @Getter
 @ToString
 public class PageDTO {
-	private int startPage; //화면에 보여지는 페이지의 시작번호
-	private int endPage; //화면에 보여지는 페이지의 끝 번호
-	private boolean prev, next; //이전 혹은 다음페이지 존재 여부
-	
-	private int total; //전체 데이터 개수
+	private int startPage;
+	private int endPage;
+	private boolean prev, next;
+	private int total;
 	private Criteria cri;
-	
 	public PageDTO(Criteria cri, int total) {
-		
-		this.cri = cri;
-		this.total = total;
-		
-		this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10;
-		this.startPage = this.endPage - 9;
-		
-		int realEnd = (int)(Math.ceil((total*1.0)/cri.getAmount()));
-		
-		if(realEnd < this.endPage) {
-			this.endPage = realEnd;
+		this.cri=cri;
+		this.total=total;
+		this.endPage=(int)(Math.ceil(cri.getPageNum()/10.))*10;
+		this.startPage=this.endPage-9;
+		int realEnd=(int)(Math.ceil((total*1.0)/cri.getAmount()));
+		if(realEnd<this.endPage) {
+			this.endPage=realEnd;
 		}
-		
-		this.prev = this.startPage > 1;
-		this.next = this.endPage < realEnd;
-		
-			
+		this.prev=this.startPage>1;
+		this.next=this.endPage<realEnd;
 	}
 }
