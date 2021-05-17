@@ -1,4 +1,4 @@
-package org.jihyeong.domain;
+package org.conan.domain;
 
 import lombok.Data;
 

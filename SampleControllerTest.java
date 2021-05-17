@@ -1,9 +1,9 @@
-package org.jihyeong.controller;
+package org.conan.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.jihyeong.domain.Ticket;
+import org.conan.domain.Ticket;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
