@@ -1,0 +1,21 @@
+select * from account;
+
+--drop table account;
+
+create table account (
+accountId varchar2(40),
+pwd varchar2(40),
+name varchar2(30),
+balance number);
+
+--insert into account 
+--values('acc003', '3333', 'ran', 30000);
+insert into account 
+values('acc001', '1111', 'conan', 10000);
+insert into account 
+values('acc002', '2222', 'rose', 20000);
+
+commit;
+
+select * from account;
+
