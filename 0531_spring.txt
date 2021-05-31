@@ -1,0 +1,209 @@
+[스프링 주요 특징]
+https://doublesprogramming.tistory.com/14?category=736879
+https://m.blog.naver.com/lgr0406/221741311537
+https://elfinlas.github.io/2017/12/14/java-annotation/
+https://wikidocs.net/208
+
+Spring framework
+- 자바 엔터프라이즈 개발을 편리하게 해주는 오픈소스 경량급 애플리케이션 프레임 워크
+- 객체가 필요하면 자동 생성
+- parameter 자동 수집
+
+POJO(Plain Old Java Object) 기반의 구성
+
+POJO
+- 객체지향적인 원리에 충실하면서, 환경과 기술에 종속되지 않고 필요따라 재활용될 수 있는 방식으로 설계된 오브젝트
+- 별도의 API가 필요하지 않은 일반적인 자바코드를 이용해 개발 가능
+- 특정 규약에 종속x
+- 특정 환경에 종속x.
+- 기본적인 기능만으로 개발이 가능하도록 제작되어 있음. 
+- 별도의 API 를 사용하지 않음.
+
+DI(의존성 주입)을 통한 객체간의 관계 구성
+- 객체 간의 의존성을 개발자가 설정하는 것이 아닌 스프링 컨테이너가 주입시켜주는 기능
+- 객체를 쉽게 확장하고 재사용 가능
+
+-객체(instace)를 선언만 하면, 자동 생성됨.
+
+﻿myClass myclass;  ==  MyClass myclass = new MyClass();
+ApplicationContext 라는 존재가 필요한 객체들을 생성하고, 주입해 주는 역할.
+
+ApplicationContext 가 관리하는 객체들을 '빈(Bean)' 이라고 함.
+
+빈과 빈 사이의 의존관계를 처리하는 방식은 XML, 어노테이션, java 설정 방식을 이용.
+자바에서는 객체를 생성해서 사용했지만 스프링에서는 그 객체 생성을 빈 팩토리에서 대신해줌
+
+
+AOP(Aspect Oriented Programming, 관점지향 프로그래밍) 지원
+- 반복적인 코드를 줄이고, 개발자가 비즈니스 로직에만 집중하도록 지원
+- 핵심로직이 중요하지 부수적인 코드 중요x
+- 스프링은 반드시 처리가 필요한 부분 = '횡단 관심사', 이런 횡단관심사를 분리·제작하는 것 가능
+- 관점지향 프로그래밍
+- 관심사의 분리, 관심사의 유지보수가 수월, 코드의 수정 최소화
+- 간단한 문법적인 장치만으로 AOP가 가능하도록 지원
+
+편리한 MVC구조 
+- 쿼리문은 'XML Mapper' 로 작성하면
+   자동으로 Prepared Statement 로 변환됨
+-  Maven 은 라이브러리 관리, pom.xml 에 작성
+   Mybatis 는 쿼리를 관리, mapper.xml 에 작성
+-  iBatis → Mybatis 로 변경
+   전자정부프레임워크도 최근에 MyBatis 도입
+   기본값은 iBatis
+
+WAS에 종속적이지 않은 개발 환경
+
+IoC(Inversion of Control, 제어의 역전) = 객체에 대한 제어권
+- 기존 = 개발자에게 제어권(new 연산자로 객체 생성) 있음 → 제어권을 스프링에게 넘김
+→ 개발자에게 편리함 제공, 코드의 최소화
+- 인스턴스 라이프 사이클(생성 → 소멸)을 개발자가 아닌 스프링 컨테이너가 담당
+
+
+트랜잭션(Transaction)의 지원
+- 복잡한 트랜잭션 관리를 어노테이션이나 xml로 설정 → 개발자가 매번 상황에 맞는 코드를 작성하지 않아도 됨	
+
+
+================================================================
+
+
+Map (+ Mapping)
+‘사람’을 예로 들면 누구든지 "이름" = "홍길동", "생일" = "몇 월 몇 일" 등으로 구분할 수 있다. 자바의 맵(Map)은 이러한 대응관계를 쉽게 표현할 수 있게 해 주는 자료형이다. 이것은 요즘 나오는 대부분의 언어들도 갖고 있는 자료형으로 Associative array, Hash라고도 불린다.
+
+맵(Map)은 사전(dictionary)과 비슷하다. 즉, people 이란 단어에 "사람", baseball 이라는 단어에 "야구"라는 뜻이 부합되듯이 Map은 Key와 Value라는 것을 한 쌍으로 갖는 자료형이다.
+
+key	value
+people	사람
+baseball	야구
+Map은 리스트나 배열처럼 순차적으로(sequential) 해당 요소 값을 구하지 않고 key를 통해 value를 얻는다. 맵(Map)의 가장 큰 특징이라면 key로 value를 얻어낸다는 점이다. baseball이란 단어의 뜻을 찾기 위해서 사전의 내용을 순차적으로 모두 검색하는 것이 아니라 baseball이라는 단어가 있는 곳만을 펼쳐보는 것이다.
+
+put
+자바의 맵(Map)중 가장 간단한 HashMap에 대해서 알아보자.
+
+Map 역시 List와 마찬가지로 인터페이스이다. Map 인터페이스를 구현한 Map자료형에는 HashMap, LinkedHashMap, TreeMap등이 있다. 인터페이스에 대해서는 객체지향 챕터에서 자세하게 다룰 것이다.
+
+HashMap<String, String> map = new HashMap<String, String>();
+map.put("people", "사람");
+map.put("baseball", "야구");
+key와 value가 String 형태인 HashMap을 만들고 위에서 보았던 예제의 항목값들을 입력해 보았다. key와 value는 위 예제에서 보듯이 put메소드를 이용하여 입력한다.
+
+※ HashMap 역시 제네릭스를 이용한다. 위의 HashMap 의 제네릭스는 Key, Value 모두 String 타입이다.
+
+get
+key에 해당되는 value값을 얻기 위해서는 다음과 같이 한다.
+
+System.out.println(map.get("people"));
+위와같이 get 메소드를 이용하면 value값을 얻을 수 있다. 위 예제는 결과로 "사람"이라는 문자열을 출력할 것이다.
+
+containsKey
+containsKey 메소드는 맵(Map)에 해당 키(key)가 있는지를 조사하여 그 결과값을 리턴한다.
+
+System.out.println(map.containsKey("people"));
+"people"이라는 키는 존재하므로 true가 출력될 것이다.
+
+remove
+remove 메소드는 맵(Map)의 항목을 삭제하는 메소드로 key값에 해당되는 아이템(key, value)을 삭제한 후 그 value 값을 리턴한다.
+
+System.out.println(map.remove("people"));
+"people"에 해당되는 아이템(people:사람)이 삭제된 후 "사람"이 출력될 것이다.
+
+size
+size 메소드는 Map의 갯수를 리턴한다.
+
+System.out.println(map.size());
+"people", "baseball" 두 값을 가지고 있다가 "people"항목이 삭제되었으므로 1이 출력될 것이다.
+
+다음은 테스트 시 사용되었던 코드 전체이다.
+
+TestMap.java
+
+import java.util.HashMap;
+
+public class TestMap {
+    public static void main(String[] args) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("people", "사람");
+        map.put("baseball", "야구");
+
+        System.out.println(map.get("people"));
+        System.out.println(map.containsKey("people"));
+        System.out.println(map.remove("people"));
+        System.out.println(map.size());
+    }
+}
+LinkedHashMap과 TreeMap
+
+Map의 가장 큰 특징은 순서에 의존하지 않고 key로 value를 가져오는데 있다. 하지만 가끔은 Map에 입력된 순서대로 데이터를 가져오고 싶은 경우도 있고 때로는 입력된 key에 의해 소트된 데이터를 가져오고 싶을 수도 있을 것이다. 이런경우에는 LinkedHashMap과 TreeMap을 사용하는 것이 유리하다.
+
+LinkedHashMap은 입력된 순서대로 데이터가 출력되는 특징을 가지고 있다.
+TreeMap은 입력된 key의 소트순으로 데이터가 출력되는 특징을 가지고 있다.
+
+
+==================================================================
+
+
+Anotation
+
+Java에서 어노테이션(Annotation) 이란?
+자바 개발을 하다 보면 클래스 또는 메서드 또는 변수 앞에 @Override 같은 @ 표시를 많이 봤을 것입니다.
+이 어노테이션은 JEE5(Java Platform, Enterprise Edition 5)부터 새롭게 추가된 요소입니다.
+
+이 어노테이션으로 인해 데이터의 유효성 검사 등을 쉽게 알 수 있고, 이와 관련한 코드가 깔끔해지게 됩니다.
+일단 어노테이션의 용도는 다양한 목적이 있지만 메타 데이터의 비중이 가장 크다 할 수 있습니다.
+
+메타-테이터(Meta-Data) : 데이터를 위한 데이터를 의미하며, 풀어 이야기하면 한 데이터에 대한 설명을 의미하는 데이터. (자신의 정보를 담고 있는 데이터)
+
+Java에서 기본적으로 제공하는 어노테이션 종류
+@Override
+선언한 메서드가 오버라이드 되었다는 것을 나타냅니다.
+만약 상위(부모) 클래스(또는 인터페이스)에서 해당 메서드를 찾을 수 없다면 컴파일 에러를 발생 시킵니다.
+@Deprecated
+해당 메서드가 더 이상 사용되지 않음을 표시합니다.
+만약 사용할 경우 컴파일 경고를 발생 키십니다.
+@SuppressWarnings
+선언한 곳의 컴파일 경고를 무시하도록 합니다.
+@SafeVarargs
+Java7 부터 지원하며, 제너릭 같은 가변인자의 매개변수를 사용할 때의 경고를 무시합니다.
+@FunctionalInterface
+Java8 부터 지원하며, 함수형 인터페이스를 지정하는 어노테이션입니다.
+만약 메서드가 존재하지 않거나, 1개 이상의 메서드(default 메서드 제외)가 존재할 경우 컴파일 오류를 발생 시킵니다.
+
+어노테이션은 어떻게 구성되어 있을까?
+먼저 어노테이션의 구조를 보기 위해서 아래의 코드를 참고해 봅니다. (예를 위해 작성된 커스텀 어노테이션입니다.)
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface CustomAnnotation {
+	boolean isCheck() default true;
+}
+먼저 1번, 2번의 어노테이션 선언에 쓰인 어노테이션은 메타 어노테이션(Meta Annotation)이라 하며 이를 이용해 커스텀 어노테이션을 작성할 수 있게 됩니다.
+
+메타 어노테이션의 종류
+@Retention
+자바 컴파일러가 어노테이션을 다루는 방법을 기술하며, 특정 시점까지 영향을 미치는지를 결정합니다.
+종류는 다음과 같습니다.
+RetentionPolicy.SOURCE : 컴파일 전까지만 유효. (컴파일 이후에는 사라짐)
+RetentionPolicy.CLASS : 컴파일러가 클래스를 참조할 때까지 유효.
+RetentionPolicy.RUNTIME : 컴파일 이후에도 JVM에 의해 계속 참조가 가능. (리플렉션 사용)
+@Target
+어노테이션이 적용할 위치를 선택합니다.
+종류는 다음과 같습니다.
+ElementType.PACKAGE : 패키지 선언
+ElementType.TYPE : 타입 선언
+ElementType.ANNOTATION_TYPE : 어노테이션 타입 선언
+ElementType.CONSTRUCTOR : 생성자 선언
+ElementType.FIELD : 멤버 변수 선언
+ElementType.LOCAL_VARIABLE : 지역 변수 선언
+ElementType.METHOD : 메서드 선언
+ElementType.PARAMETER : 전달인자 선언
+ElementType.TYPE_PARAMETER : 전달인자 타입 선언
+ElementType.TYPE_USE : 타입 선언
+@Documented
+해당 어노테이션을 Javadoc에 포함시킵니다.
+@Inherited
+어노테이션의 상속을 가능하게 합니다.
+@Repeatable
+Java8 부터 지원하며, 연속적으로 어노테이션을 선언할 수 있게 해줍니다.
+
+
+어노테이션은 기본적으로 인터페이스 형태를 취하고 있으며, 단지 interface 앞에 @ 표시를 해줍니다.
+어노테이션의 필드에서는 enum, String이나 기본 자료형, 기본 자료형의 배열을 사용할 수 있습니다.
