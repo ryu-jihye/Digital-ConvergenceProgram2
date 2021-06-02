@@ -1,27 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.row {
-  display: flex;
-}
-.column1 {
-  flex: 30%;
-  padding: 10px;
-}
-.column2 {
-  flex: 70%;
-  padding: 10px;
-}
+<meta charset="utf-8" />
+<title>CSS를 일렬로 나열하기</title>
+<style type="text/css">
 a {/* 기본 설정*/
 	text-decoration: none;
 	color: #000000;
@@ -52,14 +36,9 @@ nav ul li img {
     vertical-align: middle;
 }
 </style>
-</head> 
+</head>
 <body>
-<div class="row">
-  <div class="column1" style="background-color:#aaa;">
-    <h2>Logo</h2>
-  </div>
-  <div class="column2" style="background-color:#bbb;">
-   <nav>
+	<nav>
 		<ul>		
 			<li><a href="#">예약관리</a></li>
 			<li><a href="#"><img src="images/user.png" /><a href="#">회원정보</a></li>
@@ -68,9 +47,5 @@ nav ul li img {
 			<li><a href="#"><img src="images/home.png" />홈</a></li>
 		</ul>
 	</nav>
-  </div>
-</div>
-
 </body>
 </html>
-    
