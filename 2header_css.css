@@ -1,0 +1,89 @@
+body {
+	margin: 0; /*웹 페이지를 상단 바가 다 채움*/
+	font-family: 'Nanum Gothic', sans-serif; /*body 내 모든 포튼 동일 적용*/
+	text-align: center;
+}
+.navbar {
+	display: flex; /*한 줄에 나란히*/
+	justify-content: space-between; /*스페이스를 사이사이에 넣음*/
+	align-items: center; /*중앙 배치*/
+	background-color: white;
+	padding: 0.1rem 5px; /*navbar 크기 조정*/
+}
+a{
+	text-decoration: none;/*.없앰*/
+	color: #334b65;
+}
+.main_logo{
+	width: 30px;
+	height: 30px;
+}
+.navbar_logo {
+	font-size: 15px;
+	color : #334b65;
+	padding-left: 0; 
+}
+.navbar_interval{
+	display:flex;
+	list-style: none;
+	padding-left: 0;
+}
+.navbar_interval li {
+	padding: 8px 75px; /*메뉴안 내용들의 간격 조정*/
+}
+.navbar_menu {
+	display: flex; /*한 줄에 하나씩 나옴*/
+	list-style:none; /*홈이 같지 않음*/
+	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
+}
+.navbar_menu li {
+	padding: 8px 12px; /*메뉴안 내용들의 간격 조정*/
+}
+.navbar_menu li:hover {/*클릭시 색깔 변함*/
+	background-color: #b9d6f4;
+	border-radius: 4px; /*모서리 둥글게*/
+}
+.navbar_icons{
+	color: white;
+	display: flex;
+	list-style:none;	
+	padding-left: 0; /*중앙 배치*/
+}
+.navbar_icons li {
+	padding: 8px 12px;
+}
+.navbar_toogleBtn { /*위치 조정*/
+	display: none; /*큰 크기때는 안 보이게 함*/
+	position: absolute; /*제일 위에 배치*/
+	right: 32px; /*오른쪽에서 32px 떨어진 곳에 배치*/
+	font-size: 24px;
+	color:#334b65;
+}
+@media screen and (max-width: 1075px) {
+	.navbar {
+		flex-direction: column; /*기존은 row, column으로 아래로 내림*/
+		align-items: flex-start; /*왼쪽으로 이동*/
+	}
+	.navbar_menu{
+		display: none; /*화면에서 사라짐*/
+		flex-direction: column;
+		align-items: center; /*중앙배치*/
+		width: 100% /*align-items가 반응하지 않는 부분을 width가 보완*/
+	}
+	.navbar_menu li{ /*hover부분이 넓어짐*/
+		width: 100%; 
+		text-align: center;
+	}
+	.navbar_icons {
+		display: none; 
+		justify-content: center; /*중앙 배치*/
+		width: 100%;
+	}
+	.navbar_toogleBtn{/*화면이 작아질때만 표시되도록 함*/
+		display: block; 
+	}
+	.navbar_menu.active,
+	.navbar_icons.active { /*navbar_toogleBtn이 클릭시 활성화*/
+		display: flex;	
+	}
+}
