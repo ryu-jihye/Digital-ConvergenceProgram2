@@ -7,7 +7,7 @@ body {
 	display: flex; /*한 줄에 나란히*/
 	justify-content: space-between; /*스페이스를 사이사이에 넣음*/
 	align-items: center; /*중앙 배치*/
-	background-color: #263343;
+	background-color: #16a085;
 	padding: 0.1rem 5px; /*navbar 크기 조정*/
 }
 a{
