@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+        <meta charset="UTF-8">
+        <title>변수 출력</title>
+        <script> 
+        
+       var quarter1 = 1200;
+       var quarter2 = 1300;
+       var quarter3 = 1000;
+       
+       var quarter4 = prompt("4분기 판매량을 입력하세요", "");
+       var quarter4 = parseInt(quarter4);
+
+       var average_quarter = parseInt(quarter1 + quarter2 + quarter3 + quarter4) / 4;
+       var result = quarter4 >= average_quarter;
+       var result = result ? "판매량이 평균 이상입니다." : "판매량이 평균 미달입니다.";
+
+       document.write(result);
+
+        </script>
+</head>
+<body>
+</body>
+</html>
