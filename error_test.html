@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Message Display</title>
+</head>
+<body>
+    <form name="form" onsubmit="return check()">
+
+        <input type="text" name="id">
+        
+        <input type="text" name="pw">
+        
+        <input type="submit">
+        
+        </form>
+</body>
+</html>
+
+<script>
+  
+function check() {
+
+if(form.id.value == "") {
+
+  alert("ID를 입력해주세요.");
+
+  form.id.focus();
+
+  return false;
+
+}
+
+else if(form.pw.value == "") {
+
+  alert("PASSWORD를 입력해 주세요.");
+
+  form.pw.focus();
+
+  return false;
+
+}
+
+else return true;
+
+}
+</script>
